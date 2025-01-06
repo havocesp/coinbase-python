@@ -627,8 +627,8 @@ class Client(object):
     @staticmethod
     def callback_public_key():
         if Client.cached_callback_public_key is None:
-            f = open(COINBASE_CALLBACK_PUBLIC_KEY_PATH, 'r')
-            Client.cached_callback_public_key = RSA.importKey(f.read())
+            with open(COINBASE_CALLBACK_PUBLIC_KEY_PATH, 'r') as f:
+                Client.cached_callback_public_key = RSA.importKey(f.read())
         return Client.cached_callback_public_key
 
 
